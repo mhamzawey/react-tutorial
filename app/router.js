@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StackNavigator,TabNavigator } from "react-navigation";
+import { StackNavigator,TabNavigator,SwitchNavigator} from "react-navigation";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
 import Home from "./screens/Home";
@@ -43,3 +43,18 @@ export const SignedIn = TabNavigator({
     }
   }
 });
+export const createRootNavigator = (signedIn = false) => {
+  return SwitchNavigator(
+    {
+      SignedIn: {
+        screen: SignedIn
+      },
+      SignedOut: {
+        screen: SignedOut
+      }
+    },
+    {
+      initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+    }
+  );
+};
